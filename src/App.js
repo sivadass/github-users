@@ -1,23 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import SearchBox from "./components/search-box";
+import UsersList from "./components/users-list";
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [usersData, setUsersData] = useState([]);
+
+  const handleSearchQuery = (query) => {
+    setSearchQuery(query);
+    const url = `https://api.github.com/search/users?${query}`;
+    return axios
+      .get(url)
+      .then((res) => {
+        console.log("res", res);
+        setUsersData(res?.data?.items || []);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // useEffect(() => {
+  //   console.log(searchQuery);
+  //   if (searchQuery) {
+  //     setUsersData([
+  //       {
+  //         id: 1,
+  //       },
+  //     ]);
+  //   }
+  // }, [searchQuery]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1>Github Users</h1>
+      <SearchBox onSubmit={(query) => handleSearchQuery(query)} />
+      <UsersList data={usersData} />
     </div>
   );
 }
