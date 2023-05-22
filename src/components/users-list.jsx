@@ -1,5 +1,3 @@
-import React from "react";
-
 const UsersList = ({ data }) => {
   if (!data) {
     return <p>Sorry, no results found!</p>;

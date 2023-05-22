@@ -1,14 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import SearchBox from "./components/search-box";
 import UsersList from "./components/users-list";
 
 function App() {
-  const [searchQuery, setSearchQuery] = useState("");
   const [usersData, setUsersData] = useState([]);
 
   const handleSearchQuery = (query) => {
-    setSearchQuery(query);
     const url = `https://api.github.com/search/users?${query}`;
     return axios
       .get(url)
@@ -20,17 +18,6 @@ function App() {
         console.log(err);
       });
   };
-
-  // useEffect(() => {
-  //   console.log(searchQuery);
-  //   if (searchQuery) {
-  //     setUsersData([
-  //       {
-  //         id: 1,
-  //       },
-  //     ]);
-  //   }
-  // }, [searchQuery]);
 
   return (
     <div className="app">

@@ -1,12 +1,11 @@
-import React from "react";
+import { useState } from "react";
 
 const SearchBox = ({ onSubmit }) => {
-  const [technology, setTechnology] = React.useState("");
-  const [location, setLocation] = React.useState("");
+  const [technology, setTechnology] = useState("");
+  const [location, setLocation] = useState("");
 
   const handleSubmit = () => {
     const urlParams = `type:user+language: ${technology} location:${location}`;
-    // const queryString = `q=${encodeURIComponent('GitHub Octocat in:readme user:defunkt type:user+language: ')}`;
     const queryString = "q=" + encodeURIComponent(urlParams);
     onSubmit(queryString);
   };

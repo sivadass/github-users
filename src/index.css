@@ -26,6 +26,16 @@ img {
   width: 100%;
 }
 
+input,
+button {
+  font-family: inherit;
+  font-size: inherit;
+  height: 32px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 8px;
+}
+
 .users-list {
   padding: 24px;
 }
@@ -48,3 +58,12 @@ img {
   font-size: 32px;
 }
 
+.search-box {
+  padding: 16px;
+  border: 1px solid #ccc;
+  margin-bottom: 16px;
+}
+
+.search-box input {
+  margin: 0 8px;
+}
